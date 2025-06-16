@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: hsl(202, 86%, 94%);
+    background-color: #F7FAFC;
 }
 
 /*## Colors
@@ -30,6 +30,15 @@ body {
 - Slate 700: hsl(200, 24%, 40%)
 - Slate 900: hsl(202, 55%, 16%)
 
+Fondo: #F7FAFC
+
+Principal: #805AD5 (violeta energético)
+
+Secundario: #B794F4
+
+Botones: #6B46C1
+
+Texto: #1A202C
 
 -Weights: 500, 700
 
@@ -53,8 +62,8 @@ body {
     }
 
     .container1__calculator__title h2 {
-        color: hsl(202, 55%, 16%);
-
+        color: #805AD5;
+        font-size: 28px;
     }
 
     .container1__calculator__title a {
@@ -96,10 +105,7 @@ body {
         background-color: hsl(201deg 62.37% 91.63%);
     }
 
-    .container1__calculator__form_twoInput_one {
-        display: block;
-        position: relative;
-    }
+
 
     .spanmTerm {
         position: absolute;
@@ -110,10 +116,7 @@ body {
         right: -1px;
     }
 
-    .container1__calculator__form_twoInput_two {
-        display: block;
-        position: relative;
-    }
+   
 
     .spanPercent {
         position: absolute;
@@ -135,11 +138,13 @@ body {
     input[type="radio"] {
         display: none;
     }
-
+.radio-width{
+width: 48%;
+}
     .MortgageRate {
         width: 100%;
         position: relative;
-        color: hsl(202, 55%, 16%);
+        color: #1A202C;
         font-family: "Poppins", sans-serif;
         cursor: pointer;
         display: inline-flex;
@@ -165,23 +170,23 @@ body {
         height: 1em;
         width: 1em;
         border: 2px solid hsl(61, 70%, 52%);
-        background-color: hsl(61, 55%, 85%);
+        background-color: #B794F4;
         color: hsl(202, 55%, 16%);
     }
 
     input[type="radio"]:checked+.MortgageRate {
-        background-color: hsl(61, 55%, 85%);
+        background-color: #B794F4;
         border-color: hsl(61, 70%, 52%);
         color: hsl(202, 55%, 16%);
     }
 
     .container1__calculator button {
         position: relative;
-        background-color: hsl(61, 70%, 52%);
+        background-color: #6B46C1;
         background-repeat: no-repeat;
         width: 100%;
         border-radius: 1024px;
-        border: solid hsl(61, 70%, 52%);
+        border: solid #6B46C1;
         padding: 8px;
         align-items: center;
     }
@@ -198,7 +203,7 @@ body {
     /*----CONTAINER 2*/
     .container2__results {
         height: 40%;
-        background-color: hsl(202, 55%, 16%);
+        background-color: #805AD5;
     }
 
 
@@ -262,8 +267,10 @@ body {
     }
 
     .container1__calculator__form_twoInput_one {
-        width: 47.5%;
+        width: 100%;
         margin-right: 5%;
+        display: flex;
+        justify-content: space-around;
     }
 
     .container1__calculator__form_twoInput_two {
@@ -282,6 +289,7 @@ body {
         border-bottom-left-radius: 4%;
         height: auto;
     }
+  
 }
 
 @media(min-width: 1024px) {
@@ -319,9 +327,7 @@ body {
         width: 70%;
     }
 
-    .radioButtons {
-        margin-bottom: 20px;
-    }
+    
     .container2__results {
         width: 50%;
         border-top-right-radius: 4%;
