@@ -1,5 +1,5 @@
 
-let capitalPrestado = document.getElementById("mAmoung");
+let Edad = document.getElementById("mAmoung");
 let years = document.getElementById("mTerm");
 let interest = document.getElementById("iRate");
 
