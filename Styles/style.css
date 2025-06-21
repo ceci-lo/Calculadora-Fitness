@@ -94,7 +94,7 @@ Texto: #1A202C
 
     #mAmoung {
         padding: 5px 0px 5px 29px;
-        width: 91%;
+        width: 100%;
     }
 
     .spanUsd {
@@ -139,7 +139,7 @@ Texto: #1A202C
         display: none;
     }
 .radio-width{
-width: 48%;
+width: 100%;
 }
     .MortgageRate {
         width: 100%;
@@ -197,7 +197,12 @@ width: 48%;
         left: 30px;
         text-align: center;
         padding: 0px 8px 0px 0px;
+        
 
+    }
+    .container1__calculator button:hover {
+        background-color: #805AD5;
+        color: hsl(0, 0%, 100%);
     }
 
     /*----CONTAINER 2*/
@@ -208,7 +213,7 @@ width: 48%;
 
 
     .container2__results__img {
-        background-image: url("../assets/images/illustration-empty.svg");
+        background-image: url("../assets/images/undraw_morning-workout_73u9.svg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: contain;
@@ -227,10 +232,11 @@ width: 48%;
         font-size: 18px;
         padding: 10px 0px;
         color: hsl(0, 0%, 100%);
+        margin-top: 10px;
     }
 
     .container2__results__alineacion p {
-        color: hsl(203, 41%, 72%);
+        color: hsl(0, 0%, 100%);
         text-align: center;
         padding: 0px 21px;
         font-size: 11px;
@@ -325,6 +331,7 @@ width: 48%;
     .container1__calculator button {
         margin-bottom: 15px;
         width: 70%;
+        color: white;
     }
 
     
@@ -385,11 +392,15 @@ width: 48%;
     .container2__results__alineacion p {
         font-size: 13px;
     }
+    .radio-width{
+        width: 48%;
+    }
 }
 
 @media(min-width: 1536px) {
     .container {
         width: 50%;
+        padding-right: 0px;
     }
 
 }

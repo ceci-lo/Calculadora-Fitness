@@ -1,5 +1,5 @@
 
-let capitalPrestado = document.getElementById("mAmoung");
+let Edad = document.getElementById("mAmoung");
 let years = document.getElementById("mTerm");
 let interest = document.getElementById("iRate");
 
@@ -21,9 +21,8 @@ if (validacionCampos()){
   let total = capitalPrestado.value * multiplier;
 
   let repayment = total;
-  let interestOnly = 
-    (repayment * month - capitalPrestado.value) / 360
-  ;
+  let interestOnly = (repayment * month - capitalPrestado.value) / 360;
+
   mostrarAviso();
   if (radioRepayment.checked) {
    
@@ -36,12 +35,11 @@ if (validacionCampos()){
 });
 
 function mostrarAviso() {
-  let oldTitle = document.getElementsByClassName(
-    "container2__results_title"
-  )[0];
+  let oldTitle = document.getElementsByClassName("container2__results_title")[0];
   let oldP = document.getElementsByClassName("container2__results_p")[0];
   let img = document.getElementsByClassName("container2__results__img");
   for(let i  of img){ 
+  
   if (i[0] = 'container2__results__img') {
 
       i.remove();
