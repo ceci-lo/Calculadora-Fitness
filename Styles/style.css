@@ -197,6 +197,7 @@ width: 48%;
         left: 30px;
         text-align: center;
         padding: 0px 8px 0px 0px;
+        
 
     }
 
@@ -325,6 +326,7 @@ width: 48%;
     .container1__calculator button {
         margin-bottom: 15px;
         width: 70%;
+        color: white;
     }
 
     
