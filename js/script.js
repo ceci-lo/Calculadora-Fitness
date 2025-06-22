@@ -1,7 +1,24 @@
 
 let Edad = document.getElementById("mAmoung");
-let years = document.getElementById("mTerm");
-let interest = document.getElementById("iRate");
+let sexoFemenino = document.getElementById("sexoF");
+let sexoMasculino = document.getElementById("sexoM");
+let altura = document.getElementById("altura");
+let peso = document.getElementById("peso");
+let actividad = document.getElementById("listaActividad");
+let objetivo = document.getElementById("objetivo");
+
+actividad.addEventListener('change', (e) => {
+    let selectedOption = e.target.options[actividad.selectedIndex];
+    console.log(selectedOption.value + ': ' + selectedOption.text);
+  });
+
+
+ objetivo.addEventListener('change', (e)=> {
+    let selectedOption = e.target.options[objetivo.selectedIndex];
+    console.log(selectedOption.value + ': ' + selectedOption.text);
+  });
+
+/*let interest = document.getElementById("iRate");
 
 let radioRepayment = document.getElementById("repayment");
 let radioInterestOnly = document.getElementById("InterestOnly");
@@ -282,6 +299,6 @@ function validacionCampos() {
 
 
 
-    
+    */
     
  

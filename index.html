@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de hipoteca</title>
+    <title>Calculadora de Calorias</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
         rel="stylesheet" type='text/css'>
 
@@ -37,11 +37,11 @@
                     <label>Sexo</label><br>
                     <div class="container1__calculator__form_twoInput_one">
                         <div class="radio-width">
-                            <input type="radio" id="repayment" name="fav_language" value="repayment">
+                            <input type="radio" id="sexoF" name="fav_language" value="repayment">
                             <label class="MortgageRate me-4" for="repayment">Femenino</label><br>
                         </div>
                         <div class="radio-width">
-                            <input type="radio" id="InterestOnly" name="fav_language" value="InterestOnly">
+                            <input type="radio" id="sexoM" name="fav_language" value="InterestOnly">
                             <label class="MortgageRate me-4" for="InterestOnly">Masculino</label><br>
                         </div>
 
@@ -49,15 +49,15 @@
                     <div>
                         <label>
                             Altura (cm):</label>
-                        <input type="text" name="altura" required />
+                        <input type="text" name="altura" id="altura" required />
 
                     </div>
                     <div><label>Peso (kg):</label>
-                        <input type="number" name="peso" required />
+                        <input type="number" name="peso" id="peso" required />
                     </div>
                     <div class="mb-3">
                         <label>Nivel de actividad:</label><br>
-                        <select class="form-select" aria-label="Default select example" name="actividad" required>
+                        <select class="form-select" aria-label="Default select example" id="listaActividad" name="actividad" required>
                             <option value="1.2" selected>Sedentario</option>
                             <option value="1.375">Ligera</option>
                             <option value="1.55">Moderada</option>
@@ -67,7 +67,7 @@
                     </div>
                     <div class="mb-3">
                         <label> Objetivo:</label><br>
-                        <select class="form-select" aria-label="Default select example" name="objetivo" required>
+                        <select class="form-select" aria-label="Default select example" id="objetivo" name="objetivo" required>
                             <option value="mantener" selected>Mantener peso</option>
                             <option value="bajar">Bajar de peso</option>
                             <option value="subir">Subir masa muscular</option>
