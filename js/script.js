@@ -11,12 +11,39 @@ actividad.addEventListener('change', (e) => {
     let selectedOption = e.target.options[actividad.selectedIndex];
     console.log(selectedOption.value + ': ' + selectedOption.text);
   });
+  /**Funcion que muestra el valor que selecciono en actividad el usuario*/
 
 
  objetivo.addEventListener('change', (e)=> {
     let selectedOption = e.target.options[objetivo.selectedIndex];
     console.log(selectedOption.value + ': ' + selectedOption.text);
   });
+/**Funcion que muestra el valor que selecciona en objetivo el usuario */
+
+/** Tasa Metabólica Basal (TMB) */
+
+/*Hombres: TMB = (10 x peso en kg) + (6.25 x altura en cm) - (5 x edad en años) + 5
+Mujeres: TMB = (10 x peso en kg) + (6.25 x altura en cm) - (5 x edad en años) - 161  
+NAF = actividad
+Calorías de Mantenimiento = TMB x NAF */
+
+function calcularTMB({ sexo, edad, peso, altura }) {
+  if (sexo === "masculino") {
+    return 10 * peso + 6.25 * altura - 5 * edad + 5;
+  } else {
+    return 10 * peso + 6.25 * altura - 5 * edad - 161;
+  }
+}
+
+function calcularTDEE(tmb, actividad) {
+  return tmb * parseFloat(actividad);
+}
+
+function ajustarCalorias(tdee, objetivo) {
+  if (objetivo === "mantener") return tdee;
+  if (objetivo === "bajar") return tdee - 500;
+  if (objetivo === "subir") return tdee + 300;
+}
 
 /*let interest = document.getElementById("iRate");
 
