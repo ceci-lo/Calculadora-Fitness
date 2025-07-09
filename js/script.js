@@ -1,23 +1,42 @@
 
-let Edad = document.getElementById("mAmoung");
-let sexoFemenino = document.getElementById("sexoF");
+let edad = document.getElementById("mAmoung");
 let sexoMasculino = document.getElementById("sexoM");
 let altura = document.getElementById("altura");
 let peso = document.getElementById("peso");
 let actividad = document.getElementById("listaActividad");
 let objetivo = document.getElementById("objetivo");
+let submit = document.getElementById("btn");
 
-actividad.addEventListener('change', (e) => {
+submit.addEventListener("click", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+
+  actividad.addEventListener("change", (e) => {
     let selectedOption = e.target.options[actividad.selectedIndex];
-    console.log(selectedOption.value + ': ' + selectedOption.text);
+    console.log(selectedOption.value + ": " + selectedOption.text);
   });
   /**Funcion que muestra el valor que selecciono en actividad el usuario*/
+  
 
-
- objetivo.addEventListener('change', (e)=> {
+  objetivo.addEventListener("change", (e) => {
     let selectedOption = e.target.options[objetivo.selectedIndex];
-    console.log(selectedOption.value + ': ' + selectedOption.text);
+    console.log(selectedOption.value + ": " + selectedOption.text);
   });
+
+  let sexo = sexoMasculino.checked ? "masculino" : "femenino";
+  let ed = Number(edad.value);
+  let p = Number(peso.value);
+  let a = Number(altura.value);
+
+  let TMB = calcularTMB({ sexo, edad: ed,peso: p,altura: a });
+  let NAF = actividad.value;
+  let TDEE = calcularTDEE(TMB, NAF);
+
+  console.log("Calorias de mantenimiento", TDEE );
+
+  let caloriasAjustadas = ajustarCalorias(TDEE, objetivo.value);
+  console.log("Calorias ajustadas", caloriasAjustadas);
+});
 /**Funcion que muestra el valor que selecciona en objetivo el usuario */
 
 /** Tasa Metabólica Basal (TMB) */
@@ -29,20 +48,20 @@ Calorías de Mantenimiento = TMB x NAF */
 
 function calcularTMB({ sexo, edad, peso, altura }) {
   if (sexo === "masculino") {
-    return 10 * peso + 6.25 * altura - 5 * edad + 5;
+    return Math.round( 10 * peso + 6.25 * altura - 5 * edad + 5 );
   } else {
-    return 10 * peso + 6.25 * altura - 5 * edad - 161;
+    return Math.round( 10 * peso + 6.25 * altura - 5 * edad - 161 );
   }
 }
 
 function calcularTDEE(tmb, actividad) {
-  return tmb * parseFloat(actividad);
+  return Math.round(tmb) * Math.round(actividad);
 }
 
 function ajustarCalorias(tdee, objetivo) {
-  if (objetivo === "mantener") return tdee;
-  if (objetivo === "bajar") return tdee - 500;
-  if (objetivo === "subir") return tdee + 300;
+  if (objetivo === "mantener") return Math.round(tdee);
+  if (objetivo === "bajar") return Math.round(tdee - 500);
+  if (objetivo === "subir") return Math.round(tdee + 300);
 }
 
 /*let interest = document.getElementById("iRate");
