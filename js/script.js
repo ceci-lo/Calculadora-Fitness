@@ -1,7 +1,48 @@
 
-let Edad = document.getElementById("mAmoung");
-let years = document.getElementById("mTerm");
-let interest = document.getElementById("iRate");
+let edad = document.getElementById("mAmoung");
+let sexoMasculino = document.getElementById("sexoM");
+let altura = document.getElementById("altura");
+let peso = document.getElementById("peso");
+let actividad = document.getElementById("listaActividad");
+let objetivo = document.getElementById("objetivo");
+let submit = document.getElementById("btn");
+
+submit.addEventListener("click", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+
+  let sexo = sexoMasculino.checked ? "masculino" : "femenino";
+  let ed = Number(edad.value);
+  let p = Number(peso.value);
+  let a = Number(altura.value);
+
+  let TMB = calcularTMB({ sexo, edad: ed,peso: p,altura: a });
+  let NAF = actividad.value;
+  let TDEE = calcularTDEE(TMB, NAF);
+
+  let caloriasAjustadas = ajustarCalorias(TDEE, objetivo.value);
+
+});
+
+function calcularTMB({ sexo, edad, peso, altura }) {
+  if (sexo === "masculino") {
+    return Math.round( 10 * peso + 6.25 * altura - 5 * edad + 5 );
+  } else {
+    return Math.round( 10 * peso + 6.25 * altura - 5 * edad - 161 );
+  }
+}
+
+function calcularTDEE(tmb, actividad) {
+  return Math.round(tmb) * Math.round(actividad);
+}
+
+function ajustarCalorias(tdee, objetivo) {
+  if (objetivo === "mantener") return Math.round(tdee);
+  if (objetivo === "bajar") return Math.round(tdee - 500);
+  if (objetivo === "subir") return Math.round(tdee + 300);
+}
+
+/*let interest = document.getElementById("iRate");
 
 let radioRepayment = document.getElementById("repayment");
 let radioInterestOnly = document.getElementById("InterestOnly");
@@ -282,6 +323,6 @@ function validacionCampos() {
 
 
 
-    
+    */
     
  
