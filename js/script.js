@@ -11,18 +11,6 @@ submit.addEventListener("click", (e) => {
   e.preventDefault();
   e.stopPropagation();
 
-  actividad.addEventListener("change", (e) => {
-    let selectedOption = e.target.options[actividad.selectedIndex];
-    console.log(selectedOption.value + ": " + selectedOption.text);
-  });
-  /**Funcion que muestra el valor que selecciono en actividad el usuario*/
-  
-
-  objetivo.addEventListener("change", (e) => {
-    let selectedOption = e.target.options[objetivo.selectedIndex];
-    console.log(selectedOption.value + ": " + selectedOption.text);
-  });
-
   let sexo = sexoMasculino.checked ? "masculino" : "femenino";
   let ed = Number(edad.value);
   let p = Number(peso.value);
@@ -32,19 +20,9 @@ submit.addEventListener("click", (e) => {
   let NAF = actividad.value;
   let TDEE = calcularTDEE(TMB, NAF);
 
-  console.log("Calorias de mantenimiento", TDEE );
-
   let caloriasAjustadas = ajustarCalorias(TDEE, objetivo.value);
-  console.log("Calorias ajustadas", caloriasAjustadas);
+
 });
-/**Funcion que muestra el valor que selecciona en objetivo el usuario */
-
-/** Tasa Metabólica Basal (TMB) */
-
-/*Hombres: TMB = (10 x peso en kg) + (6.25 x altura en cm) - (5 x edad en años) + 5
-Mujeres: TMB = (10 x peso en kg) + (6.25 x altura en cm) - (5 x edad en años) - 161  
-NAF = actividad
-Calorías de Mantenimiento = TMB x NAF */
 
 function calcularTMB({ sexo, edad, peso, altura }) {
   if (sexo === "masculino") {
