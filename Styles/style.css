@@ -43,6 +43,13 @@ Texto: #1A202C
 -Weights: 500, 700
 
 */
+.title{
+    text-align: left !important;
+    padding: 10px 0px 5px;
+    /*screen 1024*/
+    margin-top: 10px;
+    font-size : "14px";
+}
 @media(min-width: 320px) {
     .container {
         height: auto;
