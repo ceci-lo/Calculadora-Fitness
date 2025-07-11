@@ -21,7 +21,7 @@ submit.addEventListener("click", (e) => {
   let TDEE = calcularTDEE(TMB, NAF);
 
   let caloriasAjustadas = ajustarCalorias(TDEE, objetivo.value);
-
+crearTarjetaResultado(TMB,caloriasAjustadas); 
 });
 
 function calcularTMB({ sexo, edad, peso, altura }) {
@@ -33,7 +33,7 @@ function calcularTMB({ sexo, edad, peso, altura }) {
 }
 
 function calcularTDEE(tmb, actividad) {
-  return Math.round(tmb) * Math.round(actividad);
+  return Math.round(tmb * actividad);
 }
 
 function ajustarCalorias(tdee, objetivo) {
@@ -41,6 +41,81 @@ function ajustarCalorias(tdee, objetivo) {
   if (objetivo === "bajar") return Math.round(tdee - 500);
   if (objetivo === "subir") return Math.round(tdee + 300);
 }
+
+function crearTarjetaResultado(TMB,caloriasAjustadas) {
+  if(!document.getElementsByClassName("container_tarjeta")[0]){
+  let padre = document.getElementsByClassName("container2__results_p")[0].parentNode;
+
+  let nuevoDiv = document.createElement("div");
+  let divAnterior = document.getElementsByClassName("container2__results_p")[0];
+
+  padre.insertBefore(nuevoDiv, divAnterior.nextSibling);
+  nuevoDiv.className = "container_tarjeta";
+
+  let p1 = document.createElement("p");
+  p1.innerText = "Tus calorias ajustadas son : ";
+  p1.style.padding = "5px 0px";
+  p1.style.textAlign= "Left";
+
+//screen 1024
+if(innerWidth > 1023){
+  p1.style.fontSize = "14px";
+}
+  let tmb = document.createElement("p");
+  let caloriasTotales = document.createElement("p");
+
+
+  let containerTarjeta = document.getElementsByClassName("container_tarjeta")[0];
+  containerTarjeta.appendChild(p1);
+
+  //Estilos del resultado
+  let tmbTitle = document.createElement("p");
+  tmbTitle.className = "title";
+  tmbTitle.innerText = "Tu calorias de mantenimiento son : ";
+  tmb.innerText = TMB.toLocaleString('en');
+  tmb.className = "repaymentP"
+  tmb.style.padding = "5px 0px";
+  tmb.style.fontSize = "45px";
+  tmb.style.color = "#B794F4";
+  tmb.style.textAlign= "Left";
+
+  let hr = document.createElement("hr");
+  
+   //Estilos del resultado
+  let caloriasTitle = document.createElement("p");
+  caloriasTitle.className = "title";
+  caloriasTitle.innerText = "Tus calorías totales segun tu actividad es : ";
+  caloriasTotales.innerText = caloriasAjustadas.toLocaleString('en');
+  caloriasTotales.className = "repaymentP"
+  caloriasTotales.style.padding = "5px 0px";
+  caloriasTotales.style.fontSize = "45px";
+  caloriasTotales.style.textAlign= "Left";
+  caloriasTotales.style.color = "#B794F4";
+  
+
+ 
+  containerTarjeta.appendChild(tmbTitle); 
+  containerTarjeta.appendChild(tmb); 
+  containerTarjeta.appendChild(hr);
+  containerTarjeta.appendChild(caloriasTitle); 
+  containerTarjeta.appendChild(caloriasTotales); 
+  
+ 
+
+  } else {
+    let tomarRepaymentP = document.getElementsByClassName("repaymentP")[0]
+    let tomarInterestP = document.getElementsByClassName("interestP")[0]
+
+    if(tomarInterestP && tomarRepaymentP){
+      tomarInterestP.innerText = interest.toLocaleString('en-DE');;
+      tomarRepaymentP.innerText = repayment.toLocaleString('en-DE');;
+
+
+    }
+
+  }
+}
+
 
 /*let interest = document.getElementById("iRate");
 
