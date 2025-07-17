@@ -116,6 +116,59 @@ if(innerWidth > 1023){
   }
 }
 
+function limpiarDatos() {
+  edad.value = "";
+  sexoMasculino.checked = false;
+  altura.value = "";
+  peso.value = "";
+  actividad.value = "1.2"; // Reset to default activity level
+  objetivo.value = "mantener"; // Reset to default objective
+
+
+  let campoRequerido = document.getElementsByClassName("campoRequerido");
+
+  if (campoRequerido.length > 0) {
+    let span = document.getElementsByClassName("spanUsd")[0];
+    let mTerm = document.getElementById("mTerm");
+    let spanmTerm = document.getElementsByClassName("spanmTerm");
+    let iRate = document.getElementById("iRate");
+    let spanPercent = document.getElementsByClassName("spanPercent");
+    for (let i = 0; i <= campoRequerido.length; i++) {
+      if (campoRequerido[i].className == "campoRequerido") {
+        campoRequerido[i].remove();
+        //se cambia el estilo al que debe tener por defecto
+        //1er input
+        capitalPrestado.style.borderColor = "hsl(200, 24%, 40%)";
+        capitalPrestado.style.color = "hsl(200, 24%, 40%)";
+
+        span.style.backgroundColor = "hsl(201deg 62.37% 91.63%)";
+        span.style.color = "hsl(200, 24%, 40%)";
+
+        //2do input
+        mTerm.style.borderColor = "hsl(200, 24%, 40%)";
+        mTerm.style.color = "hsl(200, 24%, 40%)";
+
+        spanmTerm[0].style.backgroundColor = "hsl(201deg 62.37% 91.63%)";
+        spanmTerm[0].style.color = "hsl(200, 24%, 40%)";
+
+        //3er input
+        iRate.style.borderColor = "hsl(200, 24%, 40%)";
+        iRate.style.color = "hsl(200, 24%, 40%)";
+
+        spanPercent[0].style.backgroundColor = "hsl(201deg 62.37% 91.63%)";
+        spanPercent[0].style.color = "hsl(200, 24%, 40%)";
+      }
+    }
+
+    if (
+      campoRequerido.length > 0 &&
+      campoRequerido[0].className == "campoRequerido"
+    ) {
+      campoRequerido[0].remove();
+    }
+  }
+}
+
 
 /*let interest = document.getElementById("iRate");
 
