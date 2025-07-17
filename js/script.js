@@ -30,6 +30,7 @@ container2__results_p.innerHTML= "";
 
   let caloriasAjustadas = ajustarCalorias(TDEE, objetivo.value);
 crearTarjetaResultado(TMB,caloriasAjustadas); 
+limpiarDatos();
 });
 
 function calcularTMB({ sexo, edad, peso, altura }) {
@@ -123,6 +124,14 @@ if(innerWidth > 1023){
 
   }
 }
+function ponerDivAnterior(divAnterior) {
+  let padre = document.getElementsByClassName("container2__results__alineacion")[0].parentNode;
+  let nuevoDiv = document.createElement("div");
+  padre.insertBefore(nuevoDiv, divAnterior.nextSibling);
+  nuevoDiv.className = "container2__results__img";
+  return nuevoDiv;  
+}
+
 
 function limpiarDatos() {
   edad.value = "";
