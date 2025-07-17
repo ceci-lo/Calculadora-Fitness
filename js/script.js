@@ -11,6 +11,14 @@ submit.addEventListener("click", (e) => {
   e.preventDefault();
   e.stopPropagation();
 
+//Eliminar tarjeta anterior si existe
+let container2__results__img = document.getElementsByClassName("container2__results__img")[0]
+let container2__results_title = document.getElementsByClassName("container2__results_title")[0];
+let container2__results_p= document.getElementsByClassName("container2__results_p")[0];
+container2__results__img.remove();
+container2__results_title.innerText = "Tus resultados : ";
+container2__results_p.innerHTML= "";
+  //calcular TMB, TDEE y calorias ajustadas
   let sexo = sexoMasculino.checked ? "masculino" : "femenino";
   let ed = Number(edad.value);
   let p = Number(peso.value);
