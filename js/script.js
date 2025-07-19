@@ -1,5 +1,5 @@
 
-let edad = document.getElementById("mAmoung");
+let edad = document.getElementById("Edad");
 let sexoMasculino = document.getElementById("sexoM");
 let altura = document.getElementById("altura");
 let peso = document.getElementById("peso");
@@ -10,27 +10,45 @@ let submit = document.getElementById("btn");
 submit.addEventListener("click", (e) => {
   e.preventDefault();
   e.stopPropagation();
+  if (
+    edad.value == "" ||
+    peso.value == "" ||
+    altura.value == "" ||
+    actividad.value == "0" ||
+    objetivo.value == "0" ||
+    (!sexoMasculino.checked && !document.getElementById("sexoF").checked)
+  ) {
+    //Validar campos requeridos
+    let campoRequerido = document.getElementById("campoRequerido");
+    campoRequerido.style.display = "flex";
+  } else {
+    //Eliminar tarjeta anterior si existe
+    let container2__results__img = document.getElementsByClassName(
+      "container2__results__img"
+    )[0];
+    let container2__results_title = document.getElementsByClassName(
+      "container2__results_title"
+    )[0];
+    let container2__results_p = document.getElementsByClassName(
+      "container2__results_p"
+    )[0];
+    container2__results__img.remove();
+    container2__results_title.innerText = "Tus calorias ajustadas son :";
+    container2__results_p.innerHTML = "";
+    //calcular TMB, TDEE y calorias ajustadas
+    let sexo = sexoMasculino.checked ? "masculino" : "femenino";
+    let ed = Number(edad.value);
+    let p = Number(peso.value);
+    let a = Number(altura.value);
 
-//Eliminar tarjeta anterior si existe
-let container2__results__img = document.getElementsByClassName("container2__results__img")[0]
-let container2__results_title = document.getElementsByClassName("container2__results_title")[0];
-let container2__results_p= document.getElementsByClassName("container2__results_p")[0];
-container2__results__img.remove();
-container2__results_title.innerText = "Tus resultados : ";
-container2__results_p.innerHTML= "";
-  //calcular TMB, TDEE y calorias ajustadas
-  let sexo = sexoMasculino.checked ? "masculino" : "femenino";
-  let ed = Number(edad.value);
-  let p = Number(peso.value);
-  let a = Number(altura.value);
+    let TMB = calcularTMB({ sexo, edad: ed, peso: p, altura: a });
+    let NAF = actividad.value;
+    let TDEE = calcularTDEE(TMB, NAF);
 
-  let TMB = calcularTMB({ sexo, edad: ed,peso: p,altura: a });
-  let NAF = actividad.value;
-  let TDEE = calcularTDEE(TMB, NAF);
-
-  let caloriasAjustadas = ajustarCalorias(TDEE, objetivo.value);
-crearTarjetaResultado(TMB,caloriasAjustadas); 
-limpiarDatos();
+    let caloriasAjustadas = ajustarCalorias(TDEE, objetivo.value);
+    crearTarjetaResultado(TMB, caloriasAjustadas);
+    limpiarDatos();
+  }
 });
 
 function calcularTMB({ sexo, edad, peso, altura }) {
@@ -60,27 +78,22 @@ function crearTarjetaResultado(TMB,caloriasAjustadas) {
 
   padre.insertBefore(nuevoDiv, divAnterior.nextSibling);
   nuevoDiv.className = "container_tarjeta";
+ 
 
-  let p1 = document.createElement("p");
-  p1.innerText = "Tus calorias ajustadas son : ";
-  p1.style.padding = "5px 0px";
-  p1.style.textAlign= "Left";
 
-//screen 1024
-if(innerWidth > 1023){
-  p1.style.fontSize = "14px";
-}
   let tmb = document.createElement("p");
   let caloriasTotales = document.createElement("p");
 
 
   let containerTarjeta = document.getElementsByClassName("container_tarjeta")[0];
-  containerTarjeta.appendChild(p1);
+
 
   //Estilos del resultado
   let tmbTitle = document.createElement("p");
+  let tmbDescripcion = document.createElement("p");
   tmbTitle.className = "title";
   tmbTitle.innerText = "Tu calorias de mantenimiento son : ";
+  tmbDescripcion.innerText = "Las calorías de mantenimiento son las que necesitás para sostener tu peso actual.";
   tmb.innerText = TMB.toLocaleString('en');
   tmb.className = "repaymentP"
   tmb.style.padding = "5px 0px";
@@ -92,8 +105,10 @@ if(innerWidth > 1023){
   
    //Estilos del resultado
   let caloriasTitle = document.createElement("p");
+  let caloriasDescripcion = document.createElement("p");
   caloriasTitle.className = "title";
-  caloriasTitle.innerText = "Tus calorías totales segun tu actividad es : ";
+  caloriasTitle.innerText = "Tus calorías  segun tu actividad es : ";
+  caloriasDescripcion.innerText = "Las del objetivo ya incluyen un ajuste para lograr tu meta. Subir masa muscular, bajar de peso o mantenerlo.";
   caloriasTotales.innerText = caloriasAjustadas.toLocaleString('en');
   caloriasTotales.className = "repaymentP"
   caloriasTotales.style.padding = "5px 0px";
@@ -104,9 +119,11 @@ if(innerWidth > 1023){
 
  
   containerTarjeta.appendChild(tmbTitle); 
+  containerTarjeta.appendChild(tmbDescripcion);
   containerTarjeta.appendChild(tmb); 
   containerTarjeta.appendChild(hr);
   containerTarjeta.appendChild(caloriasTitle); 
+  containerTarjeta.appendChild(caloriasDescripcion); 
   containerTarjeta.appendChild(caloriasTotales); 
   
  
@@ -124,7 +141,7 @@ if(innerWidth > 1023){
 
   }
 }
-function ponerDivAnterior(divAnterior) {
+function borrarResultado(divAnterior) {
   let padre = document.getElementsByClassName("container2__results__alineacion")[0].parentNode;
   let nuevoDiv = document.createElement("div");
   padre.insertBefore(nuevoDiv, divAnterior.nextSibling);
@@ -136,6 +153,7 @@ function ponerDivAnterior(divAnterior) {
 function limpiarDatos() {
   edad.value = "";
   sexoMasculino.checked = false;
+  sexoMasculino.checked = false;
   altura.value = "";
   peso.value = "";
   actividad.value = "1.2"; // Reset to default activity level
@@ -146,7 +164,7 @@ function limpiarDatos() {
 
   if (campoRequerido.length > 0) {
     let span = document.getElementsByClassName("spanUsd")[0];
-    let mTerm = document.getElementById("mTerm");
+    let Edad= document.getElementById("Edad");
     let spanmTerm = document.getElementsByClassName("spanmTerm");
     let iRate = document.getElementById("iRate");
     let spanPercent = document.getElementsByClassName("spanPercent");
@@ -162,8 +180,8 @@ function limpiarDatos() {
         span.style.color = "hsl(200, 24%, 40%)";
 
         //2do input
-        mTerm.style.borderColor = "hsl(200, 24%, 40%)";
-        mTerm.style.color = "hsl(200, 24%, 40%)";
+        Edad.style.borderColor = "hsl(315, 81%, 43%, 1.00)";
+        Edad.style.color = "hsl(200, 24%, 40%)";
 
         spanmTerm[0].style.backgroundColor = "hsl(201deg 62.37% 91.63%)";
         spanmTerm[0].style.color = "hsl(200, 24%, 40%)";

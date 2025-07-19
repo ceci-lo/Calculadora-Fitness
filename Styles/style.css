@@ -376,6 +376,23 @@ width: 100%;
         font-size: 12px;
         padding: 4px 21px;
     }
+    .campoRequerido{
+        display:none;
+    font-size: 13px;
+    align-items: center;
+    }
+    .campoRequerido > svg{
+        align-items: center;
+    margin-bottom: 16px;
+   font-size: 13px;
+
+    color: red;
+    }
+    .campoRequerido > p{
+            align-items: center;
+   font-size: 13px;
+    padding-left: 4px;
+    }
 }
 
 @media(min-width:1280px) {}
