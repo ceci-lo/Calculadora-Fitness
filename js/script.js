@@ -10,19 +10,51 @@ let submit = document.getElementById("btn");
 submit.addEventListener("click", (e) => {
   e.preventDefault();
   e.stopPropagation();
-  if (
-    edad.value == "" ||
-    peso.value == "" ||
-    altura.value == "" ||
-    actividad.value == "0" ||
-    objetivo.value == "0" ||
-    (!sexoMasculino.checked && !document.getElementById("sexoF").checked)
-  ) {
-    //Validar campos requeridos
-    let campoRequerido = document.getElementById("campoRequerido");
-    campoRequerido.style.display = "flex";
-  } else {
-    //Eliminar tarjeta anterior si existe
+    
+  if (edad.value == "" ){
+   let mensaje__errorEdadcampoRequerido = document.getElementById("mensaje__errorEdadcampoRequerido");
+  
+   mensaje__errorEdadcampoRequerido.className = "campoRequerido";
+   
+   edad.style.borderColor = "#e74c3c";
+  }
+  if (peso.value == "" ){
+    let mensaje__errorPesocampoRequerido = document.getElementById("mensaje__errorPesocampoRequerido");
+    mensaje__errorPesocampoRequerido.style.display = "flex !important";
+    mensaje__errorPesocampoRequerido.className ="mensaje__errorPesocampoRequerido campoRequerido"
+    peso.style.borderColor = "#e74c3c";
+  }
+  if(altura.value == ""){
+    let mensaje__errorAlturacampoRequerido = document.getElementById("mensaje__errorAlturacampoRequerido");
+    required.style.display = "flex";
+    mensaje__errorAlturacampoRequerido.style.display = "flex";
+    mensaje__errorAlturacampoRequerido.className ="campoRequerido"
+    altura.style.borderColor = "#e74c3c";
+
+  }
+if (actividad.value == "0") {
+    let mensaje__errorActividadcampoRequerido = document.getElementById("mensaje__errorActividadcampoRequerido");
+    required.style.display = "flex";
+    mensaje__errorActividadcampoRequerido.style.display = "flex";
+    mensaje__errorActividadcampoRequerido.className ="campoRequerido"
+    actividad.style.borderColor = "#e74c3c";}
+  if (    objetivo.value == "0" ){
+    let mensaje__errorObjetivocampoRequerido = document.getElementById("mensaje__errorObjetivocampoRequerido");
+    required.style.display = "flex";
+    mensaje__errorObjetivocampoRequerido.style.display = "flex";
+    mensaje__errorObjetivocampoRequerido.className ="campoRequerido"
+    objetivo.style.borderColor = "#e74c3c";}
+    if(!sexoMasculino.checked && !document.getElementById("sexoF").checked){
+    let mensaje__errorSexocampoRequerido = document.getElementById("mensaje__errorSexocampoRequerido");
+    required.className = "campoRequerido";
+    required.style.display = "flex";
+    mensaje__errorSexocampoRequerido.style.display = "flex";  
+    sexoMasculino.style.borderColor = "#e74c3c";
+    document.getElementById("sexoF").style.borderColor = "#e74c3c";
+    }
+ 
+    
+            //Eliminar tarjeta anterior si existe
     let container2__results__img = document.getElementsByClassName(
       "container2__results__img"
     )[0];
@@ -48,7 +80,7 @@ submit.addEventListener("click", (e) => {
     let caloriasAjustadas = ajustarCalorias(TDEE, objetivo.value);
     crearTarjetaResultado(TMB, caloriasAjustadas);
     limpiarDatos();
-  }
+  
 });
 
 function calcularTMB({ sexo, edad, peso, altura }) {
