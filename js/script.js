@@ -11,47 +11,46 @@ submit.addEventListener("click", (e) => {
   e.preventDefault();
   e.stopPropagation();
     
+  //Validar campos requeridos
   if (edad.value == "" ){
    let mensaje__errorEdadcampoRequerido = document.getElementById("mensaje__errorEdadcampoRequerido");
   
-   mensaje__errorEdadcampoRequerido.className = "campoRequerido";
+   mensaje__errorEdadcampoRequerido.className = "mensaje__errorEdadcampoRequerido campoRequerido";
    
    edad.style.borderColor = "#e74c3c";
-  }
+  } //edad
+
   if (peso.value == "" ){
     let mensaje__errorPesocampoRequerido = document.getElementById("mensaje__errorPesocampoRequerido");
-    mensaje__errorPesocampoRequerido.style.display = "flex !important";
-    mensaje__errorPesocampoRequerido.className ="mensaje__errorPesocampoRequerido campoRequerido"
+    mensaje__errorPesocampoRequerido.className ="mensaje__errorPesocampoRequerido campoRequerido";
     peso.style.borderColor = "#e74c3c";
-  }
-  if(altura.value == ""){
-    let mensaje__errorAlturacampoRequerido = document.getElementById("mensaje__errorAlturacampoRequerido");
-    required.style.display = "flex";
-    mensaje__errorAlturacampoRequerido.style.display = "flex";
-    mensaje__errorAlturacampoRequerido.className ="campoRequerido"
-    altura.style.borderColor = "#e74c3c";
+  }//Peso
 
-  }
+  if(altura.value == ""){
+    let mensaje__errorAlturacampoRequerido = document.getElementById("mensaje__errorAlturacampoRequerido")
+    mensaje__errorAlturacampoRequerido.className ="mensaje__errorAlturacampoRequerido campoRequerido"
+    altura.style.borderColor = "#e74c3c";
+  }//altura
+
 if (actividad.value == "0") {
     let mensaje__errorActividadcampoRequerido = document.getElementById("mensaje__errorActividadcampoRequerido");
-    required.style.display = "flex";
-    mensaje__errorActividadcampoRequerido.style.display = "flex";
-    mensaje__errorActividadcampoRequerido.className ="campoRequerido"
-    actividad.style.borderColor = "#e74c3c";}
-  if (    objetivo.value == "0" ){
+    mensaje__errorActividadcampoRequerido.className ="mensaje__errorActividadcampoRequerido campoRequerido"
+    actividad.style.borderColor = "#e74c3c";
+  }//actividad
+
+  if (objetivo.value == "0" ){
     let mensaje__errorObjetivocampoRequerido = document.getElementById("mensaje__errorObjetivocampoRequerido");
-    required.style.display = "flex";
-    mensaje__errorObjetivocampoRequerido.style.display = "flex";
-    mensaje__errorObjetivocampoRequerido.className ="campoRequerido"
-    objetivo.style.borderColor = "#e74c3c";}
-    if(!sexoMasculino.checked && !document.getElementById("sexoF").checked){
+    mensaje__errorObjetivocampoRequerido.className ="mensaje__errorObjetivocampoRequerido campoRequerido"
+    objetivo.style.borderColor = "#e74c3c";
+  }//objetivo
+
+ if(!sexoMasculino.checked && !document.getElementById("sexoF").checked){
     let mensaje__errorSexocampoRequerido = document.getElementById("mensaje__errorSexocampoRequerido");
-    required.className = "campoRequerido";
-    required.style.display = "flex";
-    mensaje__errorSexocampoRequerido.style.display = "flex";  
-    sexoMasculino.style.borderColor = "#e74c3c";
-    document.getElementById("sexoF").style.borderColor = "#e74c3c";
-    }
+    mensaje__errorSexocampoRequerido.className = "mensaje__errorSexocampoRequerido campoRequerido";  
+    document.getElementsByClassName("sexos")[0].style.borderColor = "#e74c3c";
+    document.getElementsByClassName("sexos")[1].style.borderColor = "#e74c3c";
+
+    } //sexo
  
     
             //Eliminar tarjeta anterior si existe
@@ -67,6 +66,8 @@ if (actividad.value == "0") {
     container2__results__img.remove();
     container2__results_title.innerText = "Tus calorias ajustadas son :";
     container2__results_p.innerHTML = "";
+
+
     //calcular TMB, TDEE y calorias ajustadas
     let sexo = sexoMasculino.checked ? "masculino" : "femenino";
     let ed = Number(edad.value);
