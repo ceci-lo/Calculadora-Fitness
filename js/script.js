@@ -11,37 +11,43 @@ submit.addEventListener("click", (e) => {
   e.preventDefault();
   e.stopPropagation();
     
-  //Validar campos requeridos
+  /*Validar campos requeridos*/
+  /*--------------------------*/
   if (edad.value == "" ){
    let mensaje__errorEdadcampoRequerido = document.getElementById("mensaje__errorEdadcampoRequerido");
   
    mensaje__errorEdadcampoRequerido.className = "mensaje__errorEdadcampoRequerido campoRequerido";
    
    edad.style.borderColor = "#e74c3c";
+   return;
   } //edad
 
   if (peso.value == "" ){
     let mensaje__errorPesocampoRequerido = document.getElementById("mensaje__errorPesocampoRequerido");
     mensaje__errorPesocampoRequerido.className ="mensaje__errorPesocampoRequerido campoRequerido";
     peso.style.borderColor = "#e74c3c";
+    return;
   }//Peso
 
   if(altura.value == ""){
     let mensaje__errorAlturacampoRequerido = document.getElementById("mensaje__errorAlturacampoRequerido")
     mensaje__errorAlturacampoRequerido.className ="mensaje__errorAlturacampoRequerido campoRequerido"
     altura.style.borderColor = "#e74c3c";
+    return;
   }//altura
 
 if (actividad.value == "0") {
     let mensaje__errorActividadcampoRequerido = document.getElementById("mensaje__errorActividadcampoRequerido");
     mensaje__errorActividadcampoRequerido.className ="mensaje__errorActividadcampoRequerido campoRequerido"
     actividad.style.borderColor = "#e74c3c";
+    return;
   }//actividad
 
   if (objetivo.value == "0" ){
     let mensaje__errorObjetivocampoRequerido = document.getElementById("mensaje__errorObjetivocampoRequerido");
     mensaje__errorObjetivocampoRequerido.className ="mensaje__errorObjetivocampoRequerido campoRequerido"
     objetivo.style.borderColor = "#e74c3c";
+    return;
   }//objetivo
 
  if(!sexoMasculino.checked && !document.getElementById("sexoF").checked){
@@ -50,6 +56,7 @@ if (actividad.value == "0") {
     document.getElementsByClassName("sexos")[0].style.borderColor = "#e74c3c";
     document.getElementsByClassName("sexos")[1].style.borderColor = "#e74c3c";
 
+    return;
     } //sexo
  
     
